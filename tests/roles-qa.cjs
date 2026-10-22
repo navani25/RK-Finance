@@ -1,0 +1,19 @@
+const fs=require('fs'),vm=require('vm'),assert=require('assert'),{webcrypto}=require('crypto'),{TextEncoder}=require('util');
+const nodes={},cache=new Map();
+function node(id){return nodes[id]||(nodes[id]={dataset:{},style:{},value:'',disabled:false,textContent:'',innerHTML:'',classList:{s:new Set(),add(x){this.s.add(x)},remove(x){this.s.delete(x)},toggle(x,v){if(v)this.s.add(x);else this.s.delete(x)},contains(x){return this.s.has(x)}}})}
+const document={getElementById:node,querySelector:s=>node(s),querySelectorAll:()=>[]},localStorage={getItem:k=>cache.get(k)??null,setItem:(k,v)=>cache.set(k,v)};
+const ctx={document,localStorage,crypto:webcrypto,TextEncoder,Date,console,URL,setTimeout:fn=>fn(),window:{addEventListener(){},print(){}},FormData:class{constructor(f){this.d=f.testData}get(k){return this.d[k]??null}}};
+vm.createContext(ctx);const html=fs.readFileSync('dist/index.html','utf8');vm.runInContext(html.match(/<script>([\s\S]*?)<\/script>/)[1],ctx);vm.runInContext(fs.readFileSync('dist/team.js','utf8'),ctx);
+const event=data=>({preventDefault(){},target:{testData:data,querySelector:()=>node('submit')}});
+async function login(id,password){node('loginUser').value=id;node('loginPassword').value=password;await ctx.signIn(event({}));}
+(async()=>{
+await login('RK-ADMIN','bad');assert(!ctx.activeUser());assert(node('loginError').textContent.includes('incorrect'));
+await login('RK-ADMIN','demo123');assert.equal(ctx.activeUser().role,'admin');ctx.nav('settings');assert(node('settingsContent').innerHTML.includes('Team & access'));
+ctx.openTeamForm('create');await ctx.saveTeamUser(event({teamName:'Test Staff',teamUserId:'RK-TEST',teamRole:'staff',teamJoined:'2026-10-20',teamPassword:'staff-demo-123'}));assert.equal(ctx.readUsers().length,4,node('teamFormError').textContent);const staff=ctx.readUsers().find(u=>u.userId==='RK-TEST');assert(staff.passwordHash);assert(!JSON.stringify(ctx.readUsers()).includes('staff-demo-123'));
+ctx.openTeamForm('create');await ctx.saveTeamUser(event({teamName:'Duplicate',teamUserId:'rk-test',teamRole:'staff',teamJoined:'2026-10-20',teamPassword:'another-123'}));assert.equal(ctx.readUsers().length,4);assert(node('teamFormError').textContent.includes('already'));
+ctx.closeTeamForm();ctx.toggleTeamUser(staff.id);ctx.signOut();await login('RK-TEST','staff-demo-123');assert(!ctx.activeUser());assert(node('loginError').textContent.includes('deactivated'));
+await login('RK-ADMIN','demo123');ctx.toggleTeamUser(staff.id);ctx.openTeamForm('reset',staff.id);await ctx.saveTeamUser(event({teamPassword:'reset-demo-456'}));ctx.signOut();await login('RK-TEST','staff-demo-123');assert(!ctx.activeUser());await login('RK-TEST','reset-demo-456');assert.equal(ctx.activeUser().role,'staff');assert.equal(ctx.requireAdmin(),false);ctx.nav('settings');assert(!node('settingsContent').innerHTML.includes('Team & access'));const before=JSON.stringify(ctx.readUsers());ctx.toggleTeamUser('demo-manager');assert.equal(JSON.stringify(ctx.readUsers()),before);
+ctx.signOut();await login('RK-MANAGER','manager123');assert.equal(ctx.activeUser().role,'manager');assert.equal(ctx.requireAdmin(),false);ctx.nav('settings');assert(!node('settingsContent').innerHTML.includes('Add team member'));
+ctx.signOut();await login('RK-ADMIN','demo123');ctx.openTeamForm('edit',staff.id);await ctx.saveTeamUser(event({teamName:'Test Manager',teamUserId:'RK-TEST',teamRole:'manager',teamJoined:'2026-10-20'}));assert.equal(ctx.readUsers().find(u=>u.id===staff.id).role,'manager');ctx.toggleTeamUser('demo-admin');assert(ctx.readUsers().find(u=>u.id==='demo-admin').active);
+console.log('PASS: invalid login, all 3 roles, staff creation, duplicate IDs, hashed storage, deactivate/reactivate, password reset, role edit and admin-only account controls.');
+})().catch(e=>{console.error(e);process.exitCode=1});

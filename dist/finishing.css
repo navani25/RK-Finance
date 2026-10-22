@@ -1,0 +1,153 @@
+/* Finishing accents. Approved navigation, spacing and workflows are preserved. */
+/* Separate product collection views and status colours. */
+#app #collections .collection-products{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:0 0 17px}
+#app #collections .collection-product{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:44px;padding:11px 18px;border:1px solid #c7d5ea;border-radius:9px;background:#fff;color:#4c6a99;font-size:13px;font-weight:700;cursor:pointer;line-height:1.4}
+#app #collections .collection-product span{font-size:18px}
+#app #collections .collection-product.finance.selected{background:#e6eefc;border-color:#849fcc;color:#315789;box-shadow:inset 0 -2px #6f90c6}
+#app #collections .collection-product.gold{color:#89672d;border-color:#e1cfaa}
+#app #collections .collection-product.gold.selected{background:#fcf1db;border-color:#c1a067;color:#77531c;box-shadow:inset 0 -2px #bc985c}
+#app :is(#finance,#gold) .status-switch button.status-active{background:#edf7f1;border-color:#b4d7c2;color:#28724f}
+#app :is(#finance,#gold) .status-switch button.status-active.active{background:#2f7a56;border-color:#2f7a56;color:#fff}
+#app :is(#finance,#gold) .status-switch button.status-closed{background:#eff2f7;border-color:#c2cddd;color:#5b6f8b}
+#app :is(#finance,#gold) .status-switch button.status-closed.active{background:#60738d;border-color:#60738d;color:#fff}
+#app :is(#finance,#gold) .status-switch button.status-pending{background:#fff7e8;border-color:#e7d09e;color:#92702b}
+#app :is(#finance,#gold) .status-switch button.status-pending.active{background:#957027;border-color:#957027;color:#fff}
+#app :is(#finance,#gold) .status-switch button.status-approved{background:#edf3ff;border-color:#bccff0;color:#41699d}
+#app :is(#finance,#gold) .status-switch button.status-approved.active{background:#476fa5;border-color:#476fa5;color:#fff}
+#app :is(#finance,#gold) .status-switch button.status-rejected{background:#fff0f1;border-color:#e3b9bf;color:#98545e}
+#app :is(#finance,#gold) .status-switch button.status-rejected.active{background:#9f5b66;border-color:#9f5b66;color:#fff}
+#app .tag.status-active,#profileOverlay .tag.status-active{background:#eaf6ef;border:1px solid #b6d8c3;color:#28734f}
+#app .tag.status-closed,#app .tag.status-inactive,#profileOverlay .tag.status-closed,#profileOverlay .tag.status-inactive{background:#eef2f7;border:1px solid #c3cfdf;color:#5b6e89}
+#app .tag.status-pending,#app .tag.status-due-today,#profileOverlay .tag.status-pending{background:#fff5df;border:1px solid #e5cd94;color:#8b671e}
+#app .tag.status-approved,#profileOverlay .tag.status-approved{background:#eaf2ff;border:1px solid #b9cfee;color:#3d679c}
+#app .tag.status-rejected,#app .tag.status-overdue,#app .tag.status-reversed,#profileOverlay .tag.status-rejected,#profileOverlay .tag.status-overdue{background:#fff0f2;border:1px solid #e2b5bf;color:#965161}
+#modalOverlay .personal-fields{background:#f8faff;border:1px solid #cfdbed;padding:16px 18px;border-radius:10px;margin:20px 0}
+#modalOverlay .personal-fields summary{font-size:13px;font-weight:700;color:#4c6d9c;cursor:pointer;line-height:1.6}
+#modalOverlay .personal-fields .form-section{margin-bottom:14px}
+#modalOverlay .personal-fields .subtle{font-size:12px;margin-bottom:0}
+#profileOverlay .personal-card dl{display:grid;grid-template-columns:1fr 1fr;gap:0;margin:0;padding:0 20px}
+#profileOverlay .personal-card dl>div{padding:13px 12px 13px 0;border-bottom:1px solid #e6edf7;min-width:0}
+#profileOverlay .personal-card dl>div:nth-last-child(-n+2){border-bottom:0}
+#profileOverlay .personal-card dt{font-size:11px;color:#6c82a2;font-weight:650;margin:0 0 4px}
+#profileOverlay .personal-card dd{font-size:13px;color:#354f76;font-weight:500;margin:0;overflow-wrap:anywhere}
+#profileOverlay .personal-card .detail-section-head{gap:14px;flex-wrap:wrap}
+@container workspace (max-width:440px){#app #collections .collection-products{display:grid;grid-template-columns:1fr;gap:8px}#app #collections .collection-product{width:100%;font-size:12px;justify-content:flex-start}}
+@media(max-width:650px){#profileOverlay .personal-card dl{grid-template-columns:1fr;padding:0 17px}#profileOverlay .personal-card dl>div:nth-last-child(2){border-bottom:1px solid #e6edf7}}
+#app .side{background:linear-gradient(165deg,#202d49 0%,#1c2941 100%)}
+#app .logo-mark{background:#e6edff;border-color:#bdcee9;box-shadow:0 3px 9px #101b3029}
+#app .nav button.active{box-shadow:inset 0 0 0 1px #91a8d122,0 3px 8px #101b3012}
+#app .nav button{transition:background .15s,border-color .15s}
+#app .card,#app .metric,#app .table-wrap{box-shadow:0 3px 9px #20385d04}
+#app .card:hover{border-color:#cad8ee}
+#app :is(#finance,#gold) .screen-heading h1{display:flex;align-items:center;gap:12px}
+#app .loan-title-emblem{display:inline-grid;place-items:center;flex-shrink:0;width:43px;height:43px;border:1px solid #c4d5f0;border-radius:13px;background:#e8f0fd;font:23px/1 "Segoe UI Emoji","Apple Color Emoji",sans-serif;box-shadow:inset 0 1px 0 #ffffffc9}
+#app #finance .screen-heading{border-bottom-color:#cbd9ef}
+#app #finance .register-summary{position:relative;background:linear-gradient(110deg,#e7effd,#f2f6fe);border-color:#cbdaf2;box-shadow:inset 3px 0 #7b9bd2}
+#app #finance .register-summary>div{border-left-color:#c1d3ef}
+#app #finance .register-summary strong{color:#2b4d85}
+#app :is(#finance,#gold) .register-summary .loan-stat-label{display:flex;align-items:center;gap:7px;line-height:1.5}
+#app .loan-stat-label svg{width:16px;height:16px;flex-shrink:0;color:#6e8dbb}
+#app #finance .borrower-avatar{background:#eaf1fd;color:#5b7eb4;border-color:#ceddf4}
+#app #finance .data-table th{background:#f1f6ff;color:#4e6b98}
+#app #finance .register-panel{border-top:2px solid #a9bee2}
+#app #finance .primary{background:#405f9f;border-color:#405f9f}
+#app #finance .primary:hover{background:#334d86;border-color:#334d86}
+#app #gold .loan-title-emblem{background:#fcf1d9;border-color:#e7cf9b;box-shadow:inset 0 1px 0 #fff9ec}
+#app #gold .screen-heading{border-bottom-color:#e4d5b5}
+#app #gold .screen-heading h1{color:#5c492b}
+#app #gold .screen-heading p{color:#74654e}
+#app #gold .primary,#app #gold .search-submit{background:#866126;border-color:#866126;color:#fff}
+#app #gold .primary:hover,#app #gold .search-submit:hover{background:#70501e;border-color:#70501e}
+#app #gold .page-search{border-color:#e3d5b9;box-shadow:0 2px 5px #81602405}
+#app #gold .page-search .search input{background:#fffdf8;border-color:#e7dcc7;color:#66532e}
+#app #gold .search:before,#app #gold input::placeholder{color:#8a7653}
+#app #gold .search-clear{color:#80632f;background:#f5ebd6}
+#app #gold .register-summary{background:linear-gradient(110deg,#fbf0d9,#fffaf0);border-color:#e8d6af;box-shadow:inset 3px 0 #c6a66a}
+#app #gold .register-summary>div{border-left-color:#e6d4af}
+#app #gold .register-summary span{color:#826735}
+#app #gold .register-summary strong{color:#6c501f}
+#app #gold .loan-stat-label svg{color:#ac8847}
+#app #gold .register-panel{border-color:#e4d8c0;border-top:2px solid #d2b77f}
+#app #gold .register-tools{background:#fffdf8;border-bottom:1px solid #eee5d4}
+#app #gold .status-switch button{color:#81673b;border-color:#dfd0b3;background:#fffdf8}
+#app #gold .status-switch button.active{color:#fff;background:#866126;border-color:#866126}
+#app #gold .data-table th{background:#faf4e7;color:#80663a;border-color:#eadfc9}
+#app #gold .data-table td{border-color:#f0eade}
+#app #gold .data-table tbody tr:hover{background:#fffdf8}
+#app #gold .data-table strong{color:#5f4e34}
+#app #gold .borrower-avatar{color:#9a793d;background:#fbf1dd;border-color:#ead8b2}
+#app #gold .mini[data-action=loan-view]{color:#7f5e27;background:#fffaf0;border-color:#dac399}
+#app #gold .mini[data-action=loan-view]:hover{background:#f7ecd5}
+#app #gold .register-tools .subtle,#app #gold .muted{color:#826e4b}
+#app #gold .data-table th:last-child{background:#faf4e7}
+#app #gold .data-table td:last-child{border-left-color:#e6d9bd}
+#app #gold .table-wrap.has-overflow{border-bottom-color:#dfcda8}
+#app #gold :is(button,input):focus-visible{outline-color:#b48b44}
+#app .side:has(button[data-screen=gold].active) .nav button[data-screen=gold]{background:#635641;border-color:#8a7755}
+#app .side:has(button[data-screen=gold].active) .nav button[data-screen=gold] .nav-icon{color:#f4d79d}
+#app #dashboard .metric:first-child{border-top:2px solid #bbcae3}
+#app #dashboard .metric:nth-child(2){border-top:2px solid #a3b9de}
+#app #dashboard .metric:nth-child(3){border-top:2px solid #879ec7}
+#app #dashboard .metric:nth-child(4){border-top:2px solid #6d86b2}
+#app #dashboard .portfolio-panel{background:linear-gradient(135deg,#2d4169,#273957)!important;border-color:#405780!important}
+#app #dashboard .start-panel .product-link[data-action=gold-new]{color:#84622b;border-color:#dfcba4;background:#fffbf2}
+#app #dashboard .start-panel .product-link[data-action=gold-new] svg{color:#a68142}
+#app #dashboard .start-panel .product-link[data-action=finance-new]{color:#3f629b;background:#f4f8ff;border-color:#c6d6ef}
+@media(max-width:650px){#app .loan-title-emblem{width:35px;height:35px;border-radius:10px;font-size:20px}#app :is(#finance,#gold) .screen-heading h1{gap:9px}#app .loan-stat-label svg{width:15px;height:15px}#app .nav button{transition:none}}
+@media(prefers-reduced-motion:reduce){#app .nav button{transition:none}}
+/* Compact customer/loan drawer only; application screens and forms are unchanged. */
+.demo-sms{padding:14px 16px;margin:12px 0;background:#f5f8fd;border:1px solid #ccd8e9;border-radius:8px;color:#263f62}
+.demo-sms-head{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.demo-sms-head span{font-size:10px;letter-spacing:.6px;font-weight:700;color:#75603b;background:#fff5db;padding:4px 7px;border-radius:4px}
+.demo-sms p{font-size:13px;line-height:1.6;margin:8px 0;overflow-wrap:anywhere}
+.demo-sms small{font-size:11px;color:#637896}
+.otp-input-row{display:flex;gap:10px;align-items:end;margin-top:12px;flex-wrap:wrap}
+.otp-input-row .field{flex:1;min-width:160px;margin:0}
+.otp-input-row .mini{min-height:40px}
+#otpPreview:not(:empty){background:white;border:1px dashed #bac9df;padding:12px;margin-top:10px;line-height:1.6;font-size:13px;overflow-wrap:anywhere}
+#otpStatus{font-weight:650}
+#profileOverlay .drawer-head{padding:8px 16px;min-height:46px}
+#profileOverlay .drawer-head h2{font-size:18px;line-height:1.4}
+#profileOverlay .drawer-head p{display:none}
+#profileOverlay .erp-profile{padding:12px 16px}
+#profileOverlay .loan-identity{gap:9px;margin:0 0 8px;align-items:center}
+#profileOverlay .loan-identity>.borrower-avatar{width:42px;height:42px;border-radius:10px;font-size:12px}
+#profileOverlay .loan-identity .panel-kicker{font-size:9px;margin-bottom:3px;letter-spacing:.8px}
+#profileOverlay .erp-detail-head h3{font-size:21px;margin:0;line-height:1.35}
+#profileOverlay .loan-identity p,#profileOverlay .customer-id-line{font-size:12px;margin:4px 0 0;line-height:1.5}
+#profileOverlay .erp-profile .metrics{margin:0 0 8px;gap:0;border-radius:8px}
+#profileOverlay .erp-profile .metric{display:grid;grid-template-columns:auto 1fr;align-items:center;column-gap:10px;row-gap:3px;padding:8px 12px;min-width:0;min-height:0}
+#profileOverlay .metric-label{font-size:11px;line-height:1.4}
+#profileOverlay .metric-value{font-size:21px;line-height:1.2;margin:0;text-align:right}
+#profileOverlay .metric-foot{grid-column:1/-1;font-size:11px;line-height:1.4}
+#profileOverlay .loan-action-bar{padding:6px 8px;margin:0 0 8px;border-radius:8px}
+#profileOverlay .loan-action-bar .erp-actions{margin:0;gap:7px}
+#profileOverlay .mini{min-height:33px;padding:7px 10px;font-size:12px;line-height:1.4}
+#profileOverlay .detail-section{margin:8px 0;border-radius:8px}
+#profileOverlay .detail-section-head{padding:6px 12px;min-height:36px;gap:10px}
+#profileOverlay .detail-section-head h3{font-size:14px;line-height:1.5}
+#profileOverlay .detail-section-head span{font-size:11px}
+#profileOverlay .personal-card dl{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 14px;padding:2px 12px;margin:0}
+#profileOverlay .personal-card dl>div{display:grid;grid-template-columns:80px minmax(0,1fr);align-items:baseline;gap:6px;min-width:0;padding:6px 0;border-bottom:1px solid #e6edf7}
+#profileOverlay .personal-card dl>div:nth-last-child(-n+3){border-bottom:0}
+#profileOverlay .personal-card dt{font-size:11px;line-height:1.4;margin:0;color:#617b9f}
+#profileOverlay .personal-card dd{font-size:12px;line-height:1.4;margin:0;font-weight:600;overflow-wrap:anywhere;color:#344f76}
+#profileOverlay .personal-card .empty-value{color:#8c9bb0}
+#profileOverlay .photo-preview{padding:8px 12px;min-height:30px;gap:8px}
+#profileOverlay .photo-preview img{width:92px;height:78px;border-radius:6px}
+#profileOverlay .photo-preview:empty:after{font-size:12px}
+#profileOverlay .erp-quote{padding:8px 12px;margin:8px 0;font-size:12px;border-radius:8px}
+#profileOverlay .erp-quote p{margin:4px 0 0;font-size:11px;line-height:1.5}
+#profileOverlay .data-table th{padding:10px 13px;font-size:10px;line-height:1.5}
+#profileOverlay .data-table td{padding:11px 13px;font-size:12px;line-height:1.5}
+#profileOverlay .data-table .erp-empty{padding:16px!important;white-space:normal;text-align:center}
+#profileOverlay .erp-empty .empty-symbol{display:none}
+#profileOverlay .erp-empty strong{display:block;font-size:12px;line-height:1.6}
+#profileOverlay .erp-empty>span:last-child{display:block;font-size:11px;line-height:1.6;color:#6b80a0}
+#profileOverlay .erp-details{padding:8px 12px;margin:8px 0;border-radius:8px}
+#profileOverlay .erp-details summary{font-size:12px;font-weight:650;line-height:1.6}
+#profileOverlay .erp-details .table-wrap{margin-top:10px}
+#profileOverlay .drawer-more[open]>.mini{margin-top:10px}
+#profileOverlay .erp-detail-title{margin:16px 0 10px;font-size:14px}
+@media(max-width:650px){#profileOverlay .erp-profile{padding:10px 12px}#profileOverlay .drawer-head{padding:8px 12px}#profileOverlay .personal-card dl{grid-template-columns:repeat(2,minmax(0,1fr));padding:2px 10px;column-gap:12px}#profileOverlay .personal-card dl>div{grid-template-columns:72px minmax(0,1fr)}#profileOverlay .personal-card dl>div:nth-last-child(3){border-bottom:1px solid #e6edf7}#profileOverlay .personal-card dl>div:nth-last-child(-n+2){border-bottom:0}#profileOverlay .erp-detail-head{flex-wrap:wrap;gap:6px}#profileOverlay .metric-value{font-size:19px}#profileOverlay .mini{min-height:36px}#profileOverlay .loan-identity p{font-size:11px}#profileOverlay .loan-identity .panel-kicker{font-size:8px}}
+@media(max-width:440px){#profileOverlay .personal-card dl{grid-template-columns:1fr}#profileOverlay .personal-card dl>div{grid-template-columns:110px minmax(0,1fr)}#profileOverlay .personal-card dl>div:nth-last-child(2){border-bottom:1px solid #e6edf7}#profileOverlay .erp-profile .metric{grid-template-columns:1fr}#profileOverlay .metric-value{text-align:left}}

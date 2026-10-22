@@ -2,6 +2,14 @@
 
 A single-office Gold Loan and Finance Loan Management **demo ERP** with separate loan registers, daily collections, printable receipts and simulated customer messaging.
 
+## Client demo
+
+**https://navani25.github.io/RK-Finance/**
+
+Use the demo credentials below. This is a public demonstration: use fictional information only. Each visitor has separate browser-local data; OTP and SMS are simulated.
+
+GitHub Actions tests and publishes `dist/` to GitHub Pages after each push to `main`. Deployment progress is available in the repository's Actions tab.
+
 ## Run locally
 
 Requirements: Node.js 20 or newer. No dependencies, API keys, database setup or build step are required.
